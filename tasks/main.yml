@@ -39,5 +39,5 @@
     method: POST
     body: '{ "code": "{{ OneTimeCode }}", "deviceDesc": "desktop-windows", "deviceID": "{{ 9999999999999999999999 | random | to_uuid }}" }'
     body_format: json
-  when: rmapi_file_exists.stat.exists == False
+  when: rmapi_file_exists.stat.exists == false
   failed_when: OneTimeCode is undefined

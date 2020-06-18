@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: remarkable-api
   author: Fernando Crespo
   description: |
     Install rmapi to enable cli comunication with your remarkable tablet

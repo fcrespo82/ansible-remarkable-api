@@ -1,0 +1,43 @@
+---
+# tasks file for remarkable-api
+- name: Download rmapi
+  get_url:
+    url: "https://github.com/juruen/rmapi/releases/download/v{{ rmapi_version }}/rmapi-{{ ansible_distribution | lower }}.zip"
+    dest: "{{ rmapi_install_dir }}/rmapi-{{ rmapi_version }}-{{ ansible_distribution | lower }}.zip"
+  register: download_rmapi
+
+- name: Ensure install location exists
+  file:
+    path: "{{ rmapi_install_dir }}-{{ rmapi_version }}"
+    state: directory
+
+- name: Install rmapi
+  unarchive:
+    src: "{{ rmapi_install_dir }}/rmapi-{{ rmapi_version }}-{{ ansible_distribution | lower }}.zip"
+    dest: "{{ rmapi_install_dir }}-{{ rmapi_version }}"
+    remote_src: yes
+  when: download_rmapi.changed
+
+- name: Install Print to ReMarkable workflow
+  copy:
+    src: Print to ReMarkable.workflow/
+    dest: "{{ ansible_env.HOME }}/Library/PDF Services/Print to ReMarkable.workflow/"
+
+- name: Check if .rmapi file exists
+  stat: 
+    path: "{{ ansible_env.HOME }}/.rmapi"
+  register: rmapi_file_exists
+
+- name: Check if will be needed to get a OneTimeCode
+  fail: 
+    msg: To register a device you should go to https://my.remarkable.com/connect/desktop and get one from there
+  failed_when: OneTimeCode is undefined and rmapi_file_exists.stat.exists == False
+
+- name: Register device
+  uri:
+    url: https://my.remarkable.com/token/json/2/device/new
+    method: POST
+    body: '{ "code": "{{ OneTimeCode }}", "deviceDesc": "desktop-windows", "deviceID": "{{ 9999999999999999999999 | random | to_uuid }}" }'
+    body_format: json
+  when: rmapi_file_exists.stat.exists == False
+  failed_when: OneTimeCode is undefined

@@ -1,0 +1,29 @@
+{
+	"workbench.colorCustomizations": {
+		"activityBar.background": "#9be944",
+		"activityBar.foreground": "#15202b",
+		"activityBar.inactiveForeground": "#15202b99",
+		"activityBarBadge.background": "#3794e8",
+		"activityBarBadge.foreground": "#15202b",
+		"titleBar.activeBackground": "#83e01a",
+		"titleBar.inactiveBackground": "#83e01a99",
+		"titleBar.activeForeground": "#15202b",
+		"titleBar.inactiveForeground": "#15202b99",
+		"statusBar.background": "#83e01a",
+		"statusBarItem.hoverBackground": "#68b215",
+		"statusBar.foreground": "#15202b",
+		"activityBar.activeBackground": "#9be944",
+		"activityBar.activeBorder": "#3794e8",
+		"statusBar.border": "#83e01a",
+		"titleBar.border": "#83e01a"
+	},
+	"peacock.color": "#83e01a",
+	"ansible.credentialsConfigured": true,
+	"files.associations": {
+		"*.yml": "ansible"
+	},
+	"[ansible]": {
+		"editor.detectIndentation": false,
+		"editor.tabSize": 2
+	}
+}

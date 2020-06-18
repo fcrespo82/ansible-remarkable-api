@@ -1,0 +1,4 @@
+---
+# defaults file for fcrespo82.remarkable-api
+rmapi_install_dir: "{{ ansible_env.HOME }}/bin"
+rmapi_version: 0.0.11

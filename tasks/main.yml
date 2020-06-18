@@ -24,14 +24,14 @@
     dest: "{{ ansible_env.HOME }}/Library/PDF Services/Print to ReMarkable.workflow/"
 
 - name: Check if .rmapi file exists
-  stat: 
+  stat:
     path: "{{ ansible_env.HOME }}/.rmapi"
   register: rmapi_file_exists
 
 - name: Check if will be needed to get a OneTimeCode
-  fail: 
+  fail:
     msg: To register a device you should go to https://my.remarkable.com/connect/desktop and get one from there
-  failed_when: OneTimeCode is undefined and rmapi_file_exists.stat.exists == False
+  failed_when: OneTimeCode is undefined and not rmapi_file_exists.stat.exists
 
 - name: Register device
   uri:
@@ -39,5 +39,5 @@
     method: POST
     body: '{ "code": "{{ OneTimeCode }}", "deviceDesc": "desktop-windows", "deviceID": "{{ 9999999999999999999999 | random | to_uuid }}" }'
     body_format: json
-  when: rmapi_file_exists.stat.exists == false
+  when: not rmapi_file_exists.stat.exists
   failed_when: OneTimeCode is undefined

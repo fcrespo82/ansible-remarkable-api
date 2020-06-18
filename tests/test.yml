@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - fcrespo82.remarkable-api
+    - fcrespo82.remarkable_api

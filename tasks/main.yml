@@ -1,5 +1,5 @@
 ---
-# tasks file for remarkable-api
+# tasks file for remarkable_api
 - name: Download rmapi
   get_url:
     url: "https://github.com/juruen/rmapi/releases/download/v{{ rmapi_version }}/rmapi-{{ ansible_distribution | lower }}.zip"

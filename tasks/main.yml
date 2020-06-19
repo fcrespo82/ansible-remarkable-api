@@ -1,6 +1,7 @@
 ---
 # tasks file for remarkable_api
-- fail:
+- name: Fail if not in macOS
+  fail:
     msg: This role works only on macOS for now
   when: "'Darwin' not in ansible_os_family"
 

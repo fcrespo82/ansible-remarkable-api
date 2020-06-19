@@ -12,13 +12,13 @@
 
 - name: Ensure install location exists
   file:
-    path: "{{ rmapi_install_dir }}-{{ rmapi_version }}"
+    path: "{{ rmapi_install_dir }}"
     state: directory
 
 - name: Install rmapi
   unarchive:
     src: "{{ rmapi_install_dir }}/rmapi-{{ rmapi_version }}-{{ ansible_distribution | lower }}.zip"
-    dest: "{{ rmapi_install_dir }}-{{ rmapi_version }}"
+    dest: "{{ rmapi_install_dir }}"
     remote_src: yes
   when: download_rmapi.changed
 

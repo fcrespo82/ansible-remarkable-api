@@ -1,5 +1,9 @@
 ---
 # tasks file for remarkable_api
+- fail:
+    msg: This role works only on macOS for now
+  when: "'Darwin' not in ansible_os_family"
+
 - name: Download rmapi
   get_url:
     url: "https://github.com/juruen/rmapi/releases/download/v{{ rmapi_version }}/rmapi-{{ ansible_distribution | lower }}.zip"
@@ -22,6 +26,7 @@
   copy:
     src: Print to ReMarkable.workflow/
     dest: "{{ ansible_env.HOME }}/Library/PDF Services/Print to ReMarkable.workflow/"
+  when: ansible_os_family == 'Darwin'
 
 - name: Check if .rmapi file exists
   stat:

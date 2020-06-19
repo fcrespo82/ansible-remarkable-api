@@ -1,6 +1,6 @@
 galaxy_info:
   role_name: remarkable_api
-  author: Fernando Xavier de Freitas Crespo
+  author: fcrespo82
   description: |
     Install rmapi to enable cli comunication with your remarkable tablet
     Install a printer workflow to enable to send any printed item to your remarkable tablet
